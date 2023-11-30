@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockPaperScissors</title>
+    <style>
+        a{
+            margin-left: 250px;
+            font-size: 1.4em;
+        }
+        a:hover{
+            color: rgb(27, 24, 4);
+        }
+    </style>
+</head>
+<body>
+    <a href="/">Home</a>
+    
+    <h1 class="headtitle">Rock Paper Scissors</h1>
+    <style>
+        .container{
+            width: 550px;
+            height: 350px;
+            background-color: lightblue;
+            margin: 0 0 0 395px; 
+            border-radius: 12px;
+            text-align: center; 
+        }
+        .button{
+            margin: 40px 0 0 20px;
+            width: 100px;
+            height: 50px;
+            border-radius: 12px;
+            margin-left: 40px;
+            font-size: 20px;
+        }
+        #result{
+            color: rgb(19, 18, 14);
+            font-size: 1.7em;
+        }
+        
+        
+        
+        .img{
+            width: 50px;
+            height: 50px;
+            margin: 0 0 0 40px;
+            border-radius: 50%;
+            position: relative;
+            animation: img 5s infinite alternate-reverse;
+        }
+        @keyframes img {
+            0%{top: 0;left: 10px;}
+            50%{top: 10px;left: 10px;}
+            100%{top: -10px;left: 10px;}
+        }
+        .button:hover{
+            background-color: brown;
+            color: gold;
+        }
+        .img:hover{
+            width: 60px;
+            height: 60px;
+        } 
+        .img1{
+            width: 60px;
+            height: 60px;
+            margin: 0 0 0 110px;
+            border-radius: 50%;
+            position: relative;
+            animation: img1 5s infinite alternate-reverse;
+        }
+        @keyframes img1 {
+            0%{top: 0px;left: 10px;}
+            50%{top: 10px;left: 20px;}
+            100%{top: 10px;left: 10px;}
+            
+        }
+        .img1:hover{
+            width: 60px;
+            height: 60px;
+        }
+        .img2{
+            width: 50px;
+            height: 50px;
+            margin: 0 0 0 110px;
+            border-radius: 50%;
+            position: relative;
+            animation: img2 5s infinite alternate-reverse;
+        }
+        @keyframes img2 {
+            0%{top: 20px;left: 10px;}
+            50%{top: 0px;left: 10px;}
+            100%{top: 30px;left: 10px;}
+            
+        }
+        .img2:hover{
+            width: 60px;
+            height: 60px;
+        }
+        .win{
+            color: green;
+        }
+        .lose{
+            color: red;
+        }
+        .draw{
+            color: blue;
+        }
+        .header{
+            text-align: center;
+            color: rgb(41, 36, 8);
+            text-decoration: underline;
+        }
+        /* .container, .rules{
+            margin-left: 100px;
+        } */
+        .rules{
+            width: 230px;
+            height: 150px;
+            background-color: black;
+            color: gold;
+            list-style-type: none;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+            animation: rules 25s infinite alternate-reverse;
+        }
+        @keyframes rules {
+            
+            0%{top: 0px;left: 0px;background-color: red;}
+            25%{top: 0px;left: 10px;}
+            50%{top: 0px;left: 0px;}
+            75%{top: 0px;left: 200px;}
+            100%{top: 0px;left: 320px;background-color: green;}
+        }
+        .title{
+            font-size: 1.2rem;
+            text-decoration: underline;
+            list-style-type: none;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="header">Rock Paper Scissors Game</h1>
+    <div class="container">
+        <div id="choices"></div>
+        <h1 id="result"></h1>
+        <div class="rules"></div>
+    </div>
+    
+    <script>
+        const resultDisplay = document.querySelector('#result')
+        const choicesDisplay = document.querySelector('#choices')
+        const choices = ['rock', 'paper', 'scissors']
+        
+        const handleClick = (e) => {
+            getResults(e.target.innerHTML, choices[Math.floor(Math.random() * choices.length)])
+        }
+        choices.forEach(choice => {
+            const button = document.createElement('button')
+            button.classList.add('button')
+            
+            button.innerHTML = choice
+            button.addEventListener('click', handleClick)
+            choicesDisplay.appendChild(button)
+        })
+        
+        const getResults = (userChoice, computerChoice) => {
+            switch (userChoice + computerChoice) {
+                case 'scissorspaper':
+                case 'rockscissors':
+                case 'paperrock':
+                resultDisplay.innerHTML = 'You chose ' + userChoice + ' and the computer chose ' + computerChoice + ' , <b class="win">YOU WIN</b>!'
+                break
+                case 'paperscissors':
+                case 'scissorsrock':
+                case 'rockpaper':
+                resultDisplay.innerHTML = 'You chose ' + userChoice + ' and the computer chose ' + computerChoice + ' , <b class="lose">YOU LOSE</b>'
+                break
+                case 'scissorsscissors':
+                case 'rockrock':
+                case 'paperpaper':
+                resultDisplay.innerHTML = 'You chose ' + userChoice + ' and the computer chose ' + computerChoice + ' , <b class="draw">IT\'S A DRAW</b>'
+                break
+            }
+        }
+        
+        const headtitle = document.querySelector('.headtitle')
+        headtitle.addEventListener('mouseenter',()=>{
+            headtitle.innerHTML="La Morra Cinese "
+        })
+        const headtitle1 = document.querySelector('.headtitle')
+        headtitle1.addEventListener('mouseleave',()=>{
+            headtitle1.innerHTML="Rock Paper Scissors"
+        })
+        
+        const container = document.querySelector('.container')
+        
+        const img = document.createElement('img')
+        img.setAttribute('src', './img/rock.png')
+        img.classList.add('img')
+        
+        const img1 = document.createElement('img')
+        img1.setAttribute('src', './img/paper.png')
+        img1.classList.add('img1')
+        
+        const img2 = document.createElement('img')
+        img2.setAttribute('src', './img/scissors.png')
+        img2.classList.add('img2')
+        
+        const header = document.querySelector('.header')
+        header.addEventListener('mouseenter', function(){
+            header.innerHTML ="IL Gioco Della Morra Cinese"
+        })
+        const header1 = document.querySelector('.header')
+        header1.addEventListener('mouseleave', function(){
+            header1.innerHTML ="Rock Paper Scissors Game"
+        })
+        
+        const rules = document.querySelector('.rules')
+        rules.classList.add('rules')
+        rules.innerHTML ="<ol><li class='title'>The Rules</li><li>You play against the computer</li><li>Click ''rock, 'Paper' or 'Scissors'</li><li>The result appears on the screen</li></ol>"
+        
+        rules.addEventListener('mouseenter', function(){
+            rules.innerHTML ="<ol><li class='title'>Come si gioca</li><li>Giochi contro il computer</li><li>Clicca sui bottoni 'Sasso', 'Carta' o 'Forbici'</li><li>Il risultato appare sullo schermo</li></ol>"
+            
+        })
+        rules.addEventListener('mouseleave', function(){
+            rules.innerHTML ="<ol><li class='title'>The Rules</li><li>You play against the computer</li><li>Click ''rock, 'Paper' or 'Scissors'</li><li>The result appears on the screen</li></ol>"
+            
+        })
+        
+        
+        container.append(img)
+        container.append(img1)
+        container.append(img2)
+        container.append(rules)
+    </script>
+</body>
+</html>
